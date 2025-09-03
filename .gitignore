@@ -1,0 +1,32 @@
+# Python virtual environments
+venv/
+*/venv/
+ml_engine_and_backend/venv/
+
+# Python cache
+ml_engine_and_backend/__pycache__/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Logs
+logs/
+*.log
+
+# Model files
+*.h5
+*.pkl
+*.joblib
+*.ckpt
+
+# Jupyter notebooks
+.ipynb_checkpoints/
+
+# IDE settings
+.vscode/
+.idea/
+
+# OS junk
+.DS_Store
+Thumbs.db
