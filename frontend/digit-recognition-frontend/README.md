@@ -1,36 +1,68 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+Digit Recognition Project
 
-## Getting Started
+This project demonstrates a handwritten digit recognition system built incrementally using two different ML models, a FastAPI backend, and a Next.js frontend.
 
-First, run the development server:
+🧠 Machine Learning Models
+1. Basic Dense Model (No Hidden Layers)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+The first model is a simple neural network with only one dense output layer (10 neurons, one for each digit 0–9).
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Input: Flattened 28×28 grayscale images → 784 features.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Activation: Sigmoid
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Optimizer: Adam
 
-## Learn More
+Loss: Sparse Categorical Crossentropy
 
-To learn more about Next.js, take a look at the following resources:
+Accuracy: Achieved good performance (~90%), but limited in capturing complex digit shapes due to lack of hidden layers.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+2. Improved Dense Model (With Hidden Layer)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+The second model introduced a hidden layer to capture more complex patterns.
 
-## Deploy on Vercel
+Architecture:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Input layer: Flattened 784 features
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Hidden layer: Dense with ReLU activation
+
+Output layer: Dense with 10 neurons + Softmax
+
+This improved the model’s ability to generalize and handle variations in handwriting.
+
+⚡ Backend – FastAPI
+
+The trained model is served via a FastAPI backend.
+
+Exposes a /predict/ POST endpoint that accepts an uploaded image and returns:
+
+Predicted digit
+
+Probabilities for each class
+
+Includes preprocessing steps: resizing to 28×28, grayscale conversion, centering, and inversion handling (to match MNIST format).
+
+🎨 Frontend – Next.js + React
+
+The user interface is built with Next.js (TypeScript + Tailwind CSS).
+
+Features:
+
+A canvas where users can draw a digit.
+
+Predict button to send the drawing to the backend.
+
+Results are displayed as formatted JSON for clarity.
+
+CORS enabled on the backend to allow frontend communication.
+
+🛠️ Tech Stack
+
+ML Framework: TensorFlow / Keras
+
+Backend: FastAPI (Python)
+
+Frontend: Next.js (TypeScript, TailwindCSS, React)
+
+Model Serving: Uvicorn server for API hosting
