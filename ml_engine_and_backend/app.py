@@ -18,7 +18,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-model = tf.keras.models.load_model("mnist_model.keras")
+model = tf.keras.models.load_model("mnist_model_hidden_layers.keras")
 
 def preprocess_mnist(pil_img: Image.Image) -> np.ndarray:
     # 1) grayscale
