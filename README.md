@@ -76,3 +76,12 @@ The user interface is built with **Next.js (TypeScript + Tailwind CSS)**.
 - **Ensemble Models:** Combine predictions from multiple models for higher reliability.  
 
 ---
+
+## How to run
+
+-install all the modules mentioned in requirements.txt inside ml_engine_and_backend folder
+-run app.py from cmd using the command 'python -m uvicorn app:app --reload'
+-run npm install for frontend 
+-run frontend using npm run dev
+
+---
